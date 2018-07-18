@@ -7,3 +7,13 @@
   width: 100vw;
   height: 100vh;
 }
+app-title-block {
+  flex: 1;
+}
+
+app-graphic {
+  flex: 1;
+  align-self: flex-end;
+  height: calc(50vh + 48px);
+}
+

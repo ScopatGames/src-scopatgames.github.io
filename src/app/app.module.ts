@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { TitleBlockComponent } from './title-block/title-block.component';
 import { GraphicComponent } from './graphic/graphic.component';
 import { SubtitleBlockComponent } from './subtitle-block/subtitle-block.component';
+import { CanvasBackgroundComponent } from './canvas-background/canvas-background.component';
 
 
 @NgModule({
@@ -13,7 +14,8 @@ import { SubtitleBlockComponent } from './subtitle-block/subtitle-block.componen
     AppComponent,
     TitleBlockComponent,
     GraphicComponent,
-    SubtitleBlockComponent
+    SubtitleBlockComponent,
+    CanvasBackgroundComponent
   ],
   imports: [
     BrowserModule
