@@ -1,19 +1,28 @@
+body,html {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+* {
+  box-sizing: border-box;
+}
+
 .app {
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
   align-items: center;
-  background-image: url('../assets/img/plasterBackground_black.jpg');
-  width: 100vw;
+  background: url('../assets/img/plasterBackground_black.jpg');
+  background-size: cover;
   height: 100vh;
+  max-height: 100%;
 }
+
 app-title-block {
-  flex: 1;
+  flex: 3;
 }
 
 app-graphic {
-  flex: 1;
+  flex: 2;
   align-self: flex-end;
   height: calc(50vh + 48px);
 }
-
