@@ -15,14 +15,21 @@ body,html {
   background-size: cover;
   height: 100vh;
   max-height: 100%;
+  font-family: 'Courier New', Courier, monospace;
 }
 
 app-title-block {
   flex: 3;
+  z-index: 1;
 }
 
 app-graphic {
   flex: 2;
   align-self: flex-end;
   height: calc(50vh + 48px);
+  z-index: 1;
+}
+
+app-canvas-background {
+  z-index: 0;
 }
