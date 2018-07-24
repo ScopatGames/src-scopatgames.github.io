@@ -6,19 +6,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./graphic.component.css']
 })
 export class GraphicComponent implements OnInit {
-  graphic : HTMLImageElement;
   smoke : HTMLImageElement;
   timeZero : Date;
-  numberOfTrailParticles : number = 100;
+  numberOfTrailParticles : number = 10;
   particleArray : any[] = [];
 
   ngOnInit() {
-    this.graphic = new Image();
-    this.graphic.src = '../../assets/img/triangle.png';
 
     this.smoke = new Image();
     this.smoke.src = '../../assets/img/smoke.png';
-    
+
     this.timeZero = new Date();
     for(let i = 0; i < this.numberOfTrailParticles; i++){
       this.particleArray.push({
@@ -45,8 +42,8 @@ export class GraphicComponent implements OnInit {
     const time = new Date();
 
     const medianXLocation = ctx.canvas.width/2;
-    const xRange = this.graphic.width/6;
-    const maxYLocation = ctx.canvas.height +10 - this.graphic.height;
+    const xRange = 96/6;
+    const maxYLocation = ctx.canvas.height + 10 - 96;
 
     this.particleArray.forEach( (particle, index) => {
       ctx.save();
@@ -54,26 +51,46 @@ export class GraphicComponent implements OnInit {
       const xLocation = medianXLocation + xOffset;
       const timeDelta = time.getTime() - this.timeZero.getTime();
       const yOffset = (timeDelta * particle.speed + particle.seed * maxYLocation ) % maxYLocation;
-      const yLocation = this.graphic.height - 10 + yOffset;
+      const yLocation = 96 - 10 + yOffset;
       if(yLocation < particle.previousYLocation){
         particle.color = this.getRandomColor();
       }
       particle.previousYLocation = yLocation;
       ctx.translate(xLocation, yLocation);
       const rotationDirection = particle.seed < 0.5 ? 1 : -1;
-      ctx.rotate((2 * Math.PI / 2 * time.getSeconds() + 2 * Math.PI / 2000 * time.getMilliseconds() + particle.seed)*rotationDirection);
+      ctx.rotate((Math.PI * time.getSeconds() + Math.PI / 1000 * time.getMilliseconds() + particle.seed)*rotationDirection);
       ctx.drawImage(this.smoke, -16, -16);
-      const randomAlpha = Math.random()*1;
+      const randomAlpha = Math.random();
       ctx.strokeStyle = 'rgba(' + particle.color + ', ' + randomAlpha +')';
-
+      const randomScale = Math.random()*0.8 + 0.5;
       ctx.beginPath();
-      ctx.moveTo(0,-5);
-      ctx.lineTo(4.33, 2.5);
-      ctx.lineTo(-4.33, 2.5);
+      ctx.moveTo(0,-5*randomScale);
+      ctx.lineTo(4.33*randomScale, 2.5*randomScale);
+      ctx.lineTo(-4.33*randomScale, 2.5*randomScale);
       ctx.closePath();
       ctx.stroke();
+
       ctx.restore();
-    });      
+    });  
+    
+    ctx.save();
+    ctx.translate(medianXLocation, 86);
+    ctx.strokeStyle = 'rgba(255, 255, 255, ' + (Math.random()*0.5 + 0.5) + ')';
+    ctx.lineWidth = 6;
+    ctx.beginPath();
+    ctx.arc(0, 0, 10, 0, 2*Math.PI, true);
+    ctx.stroke();
+    ctx.strokeStyle = 'rgba(0, 238, 255, ' + Math.random() + ')';
+    ctx.lineWidth = 3;
+    ctx.beginPath();
+    ctx.arc(0, 0, 16, 0, 2*Math.PI, true);
+    ctx.stroke();
+    ctx.strokeStyle = 'rgba(0, 238, 255, ' + Math.random() + ')';
+    ctx.lineWidth = 1;
+    ctx.beginPath();
+    ctx.arc(0, 0, 20, 0, 2*Math.PI, true);
+    ctx.stroke();
+    ctx.restore();
 
     this.drawShip(ctx, time);
 

@@ -7,12 +7,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CanvasBackgroundComponent implements OnInit {
   timeZero : Date;
-  numberOfBackgroundParticles : number = 100;
+  numberOfBackgroundParticles : number;
+  backgroundParticleDensity : number = 0.2; // particles per 10000 square pixels 
   speedOfBackgroundParticles : number = 0.03; 
   itemArray : any [] = [];
 
   ngOnInit(){
     this.timeZero = new Date();
+    this.numberOfBackgroundParticles = Math.floor(window.innerHeight * window.innerWidth / 10000 * this.backgroundParticleDensity);
+    console.log(this.numberOfBackgroundParticles);
     for(let i = 0; i < this.numberOfBackgroundParticles; i++){
       this.itemArray.push({
         seed: Math.random(),
