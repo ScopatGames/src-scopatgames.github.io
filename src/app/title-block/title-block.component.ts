@@ -6,10 +6,23 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./title-block.component.css']
 })
 export class TitleBlockComponent implements OnInit {
-
-  constructor() { }
+  message: string;
+  url: string;
+  private defaultMessage = 'scott patten';
+  private defaultUrl = '|';
 
   ngOnInit() {
+    this.message = this.defaultMessage;
+  }
+
+  setMessage = (message: string) => {
+    this.message = message;
+    this.url = this.defaultUrl;  
+  }
+
+  setUrl = (url: string) => {
+    this.url = url;
+    this.message = this.defaultMessage;
   }
 
 }

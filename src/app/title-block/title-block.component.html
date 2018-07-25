@@ -1,4 +1,5 @@
 <div class="title-block">
-  hi, i'm scott patten
-  <app-subtitle-block></app-subtitle-block>
+  hi, i'm {{message}}
+  <app-subtitle-block [skillClickCallback]="setMessage" [urlClickCallback]="setUrl"></app-subtitle-block>
+  <app-message-block [url]="url"></app-message-block>
 </div>

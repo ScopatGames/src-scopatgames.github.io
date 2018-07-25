@@ -1,0 +1,13 @@
+.row-item-label {
+  color: #ccc;
+  cursor: pointer;
+}
+
+.row-item-label:hover {
+  color: white;
+}
+
+.row-item-delimiter {
+  color: rgb(255, 163, 214);
+  margin: 0 7.5px;
+}

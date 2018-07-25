@@ -7,16 +7,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GraphicComponent implements OnInit {
   smoke : HTMLImageElement;
-  timeZero : Date;
+  timeZero : number;
   numberOfTrailParticles : number = 10;
   particleArray : any[] = [];
 
   ngOnInit() {
 
-    this.smoke = new Image();
-    this.smoke.src = '../../assets/img/smoke.png';
-
-    this.timeZero = new Date();
+    this.timeZero = null;
     for(let i = 0; i < this.numberOfTrailParticles; i++){
       this.particleArray.push({
         seed: Math.random(),
@@ -27,10 +24,13 @@ export class GraphicComponent implements OnInit {
     }
 
     // Initiate drawing on canvas
-    this.draw();
+    this.draw(0);
   }
 
-  draw = () => {
+  draw = (timeNow: number) => {
+    if(this.timeZero === null){
+      this.timeZero = timeNow;
+    }
     const canvas = <HTMLCanvasElement> document.getElementById('canvas-graphic');
     const ctx = canvas.getContext('2d');
 
@@ -39,7 +39,8 @@ export class GraphicComponent implements OnInit {
 
     ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
 
-    const time = new Date();
+    const timeDelta = timeNow - this.timeZero;
+
 
     const medianXLocation = ctx.canvas.width/2;
     const xRange = 96/6;
@@ -49,7 +50,6 @@ export class GraphicComponent implements OnInit {
       ctx.save();
       const xOffset = this.particleArray[this.numberOfTrailParticles - 1 - index].seed * xRange - xRange/2;
       const xLocation = medianXLocation + xOffset;
-      const timeDelta = time.getTime() - this.timeZero.getTime();
       const yOffset = (timeDelta * particle.speed + particle.seed * maxYLocation ) % maxYLocation;
       const yLocation = 96 - 10 + yOffset;
       if(yLocation < particle.previousYLocation){
@@ -58,8 +58,7 @@ export class GraphicComponent implements OnInit {
       particle.previousYLocation = yLocation;
       ctx.translate(xLocation, yLocation);
       const rotationDirection = particle.seed < 0.5 ? 1 : -1;
-      ctx.rotate((Math.PI * time.getSeconds() + Math.PI / 1000 * time.getMilliseconds() + particle.seed)*rotationDirection);
-      ctx.drawImage(this.smoke, -16, -16);
+      ctx.rotate((Math.PI / 1000 * timeDelta + particle.seed)*rotationDirection);
       const randomAlpha = Math.random();
       ctx.strokeStyle = 'rgba(' + particle.color + ', ' + randomAlpha +')';
       const randomScale = Math.random()*0.8 + 0.5;
@@ -92,16 +91,15 @@ export class GraphicComponent implements OnInit {
     ctx.stroke();
     ctx.restore();
 
-    this.drawShip(ctx, time);
+    this.drawShip(ctx, timeDelta);
 
     // Request the next animation frame
     window.requestAnimationFrame(this.draw);
 
   }
 
-  drawShip = (ctx, time) => {
+  drawShip = (ctx: CanvasRenderingContext2D, time: number) => {
     const midX = ctx.canvas.width/2;
-    // ctx.drawImage(this.graphic, ctx.canvas.width/2 - this.graphic.width/2, 0);
     const shift = Math.sin(time / 1500);
 
     ctx.fillStyle = 'rgba(146,136,0,1)';
