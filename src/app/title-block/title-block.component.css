@@ -2,3 +2,7 @@
   color: #ccc;
   font-size: 1.5em;
 }
+
+.title-block > div {
+  padding: 4px 0;
+}

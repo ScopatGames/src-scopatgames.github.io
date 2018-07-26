@@ -1,1 +1,4 @@
-<div class="url"> {{url}} </div>
+<div class="message">
+  <div *ngIf="url === ''">{{message}}</div>
+  <a *ngIf="url !== ''" href="{{url}}">{{message}}</a>
+</div>

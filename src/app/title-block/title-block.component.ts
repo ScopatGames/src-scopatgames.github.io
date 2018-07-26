@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Item } from '../item';
 
 @Component({
   selector: 'app-title-block',
@@ -8,21 +9,13 @@ import { Component, OnInit } from '@angular/core';
 export class TitleBlockComponent implements OnInit {
   message: string;
   url: string;
-  private defaultMessage = 'scott patten';
-  private defaultUrl = '|';
 
   ngOnInit() {
-    this.message = this.defaultMessage;
   }
 
-  setMessage = (message: string) => {
-    this.message = message;
-    this.url = this.defaultUrl;  
-  }
-
-  setUrl = (url: string) => {
-    this.url = url;
-    this.message = this.defaultMessage;
+  setItem = (item: Item) => {
+    this.message = item.message;
+    this.url = item.url;  
   }
 
 }

@@ -16,7 +16,7 @@ export class RowItemComponent implements OnInit {
   }
 
   handleClick = () => {
-    this.clickCallback(this.item.message);
+    this.clickCallback(this.item);
   }
 
 }
