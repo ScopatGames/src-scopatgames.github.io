@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnChanges } from '@angular/core';
 
 @Component({
   inputs: ['message','url'],
@@ -6,13 +6,33 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './message-block.component.html',
   styleUrls: ['./message-block.component.css']
 })
-export class MessageBlockComponent implements OnInit {
+export class MessageBlockComponent implements OnInit, OnChanges {
   message: string;
+  currentMessage: string;
+  showCursor: boolean;
+  counter: number;
   url: string;
 
+  
+
   ngOnInit() {
-    this.message = '|';
+    this.currentMessage = '';
+    this.counter = 0;
     this.url = '';
+    setInterval(this.printMessage, 50);
+  }
+
+  ngOnChanges() {
+    this.currentMessage = '';
+  }
+
+  printMessage = () => {
+    this.showCursor = this.counter % 10 === 9 ? !this.showCursor : this.showCursor;
+    this.counter++;
+    if(this.message !== this.currentMessage){
+      this.currentMessage += this.message.substring(0,1);
+      this.message = this.message.substring(1);
+    } 
   }
 
 }

@@ -1,4 +1,5 @@
 <div class="message">
-  <div *ngIf="url === ''">{{message}}</div>
-  <a *ngIf="url !== ''" href="{{url}}">{{message}}</a>
+  <div *ngIf="url === ''">{{currentMessage}}</div>
+  <a *ngIf="url !== ''" href="{{url}}" target='_blank'>{{currentMessage}}</a>
+  <div class="cursor" [style.visibility]="showCursor ? 'visible' : 'hidden'">|</div>
 </div>

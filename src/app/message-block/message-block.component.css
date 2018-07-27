@@ -11,3 +11,7 @@
 .message > a:hover {
   color: white;
 }
+
+.cursor {
+  color: rgb(255, 98, 158);
+}

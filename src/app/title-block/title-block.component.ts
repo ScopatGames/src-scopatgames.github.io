@@ -11,6 +11,8 @@ export class TitleBlockComponent implements OnInit {
   url: string;
 
   ngOnInit() {
+    this.message = '';
+    this.url = '';
   }
 
   setItem = (item: Item) => {
