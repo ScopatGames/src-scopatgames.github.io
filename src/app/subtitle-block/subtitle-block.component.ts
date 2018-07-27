@@ -13,7 +13,7 @@ export class SubtitleBlockComponent implements OnInit {
   rowItems: Item []= [
     new Item('wd', 'web developement', '', '|'),
     new Item('gd', 'game developement', '', '|'),
-    new Item('cg', '3d models, materials, and artwork', '', '|'),
+    new Item('cg', '3d models, materials, and artwork', '', '::'),
     new Item('gh', 'github', 'https://github.com/ScopatGames', '::'),
     new Item('li', 'linkedin', 'https://www.linkedin.com/in/scott-patten-916880106', '')
   ];
