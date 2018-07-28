@@ -19,7 +19,7 @@ export class MessageBlockComponent implements OnInit, OnChanges {
     this.currentMessage = '';
     this.counter = 0;
     this.url = '';
-    setInterval(this.printMessage, 50);
+    setInterval(this.printMessage, 20);
   }
 
   ngOnChanges() {

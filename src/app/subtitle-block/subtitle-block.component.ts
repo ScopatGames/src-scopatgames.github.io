@@ -9,11 +9,10 @@ import { Item } from '../item';
 export class SubtitleBlockComponent implements OnInit {
   clickCallback;
 
-  // wd | gd | cg | ph | vd | gh :: li :: em
   rowItems: Item []= [
-    new Item('wd', 'web developement', '', '|'),
-    new Item('gd', 'game developement', '', '|'),
-    new Item('cg', '3d models, materials, and artwork', '', '::'),
+    new Item('wd', 'web developement: angular, angularjs, react, node', '', '|'),
+    new Item('gd', 'game developement: unity, c#, shaders, meshing algorithms', '', '|'),
+    new Item('cg', 'art: 3d models, materials, textures, html+css', '', '::'),
     new Item('gh', 'github', 'https://github.com/ScopatGames', '::'),
     new Item('li', 'linkedin', 'https://www.linkedin.com/in/scott-patten-916880106', '')
   ];

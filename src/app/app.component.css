@@ -35,7 +35,7 @@ app-canvas-background {
   z-index: 0;
 }
 
-@media screen and (max-width: 640px) {
+@media screen and (max-width: 780px) {
   .app {
     flex-direction: column;
   }
