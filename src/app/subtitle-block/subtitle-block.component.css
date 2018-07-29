@@ -4,3 +4,7 @@
   flex-direction: row;
 }
 
+.subtitle-block > div {
+  white-space: nowrap;
+}
+
