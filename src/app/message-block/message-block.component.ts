@@ -16,6 +16,7 @@ export class MessageBlockComponent implements OnInit, OnChanges {
   
 
   ngOnInit() {
+    this.message = '/// click a skill ///';
     this.currentMessage = '';
     this.counter = 0;
     this.url = '';

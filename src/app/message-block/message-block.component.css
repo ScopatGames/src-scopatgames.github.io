@@ -1,5 +1,6 @@
 .message {
   font-size: 0.5em;
+  word-wrap: break-word;
 }
 
 .message > a {
