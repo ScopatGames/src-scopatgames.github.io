@@ -10,8 +10,8 @@ export class SubtitleBlockComponent implements OnInit {
   clickCallback;
 
   rowItems: Item []= [
-    new Item('wd', 'web developement: front end :: angular | react + webpack + javascript | typescript, back end :: node', '', '|'),
-    new Item('gd', 'game developement: unity, vr, shaders, mesh manipulation', '', '|'),
+    new Item('wd', 'web developement: angular, react, webpack, typescript, node', '', '|'),
+    new Item('gd', 'game developement: unity, vr, shaders', '', '|'),
     new Item('cg', 'art: 3d models, materials, textures, animation', '', '::'),
     new Item('gh', 'github', 'https://github.com/ScopatGames', '::'),
     new Item('li', 'linkedin', 'https://www.linkedin.com/in/scott-patten-916880106', '')
