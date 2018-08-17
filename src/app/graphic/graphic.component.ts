@@ -59,7 +59,7 @@ export class GraphicComponent implements OnInit {
       ctx.translate(xLocation, yLocation);
       const rotationDirection = particle.seed < 0.5 ? 1 : -1;
       ctx.rotate((Math.PI / 1000 * timeDelta + particle.seed)*rotationDirection);
-      const randomAlpha = Math.random();
+      const randomAlpha = Math.random().toFixed(2);
       ctx.strokeStyle = 'rgba(' + particle.color + ', ' + randomAlpha +')';
       const randomScale = Math.random()*0.8 + 0.5;
       ctx.beginPath();
@@ -74,17 +74,17 @@ export class GraphicComponent implements OnInit {
     
     ctx.save();
     ctx.translate(medianXLocation, 86);
-    ctx.strokeStyle = 'rgba(255, 255, 255, ' + (Math.random()*0.5 + 0.5) + ')';
+    ctx.strokeStyle = 'rgba(255, 255, 255, ' + (Math.random()*0.5 + 0.5).toFixed(2) + ')';
     ctx.lineWidth = 6;
     ctx.beginPath();
     ctx.arc(0, 0, 10, 0, 2*Math.PI, true);
     ctx.stroke();
-    ctx.strokeStyle = 'rgba(0, 238, 255, ' + Math.random() + ')';
+    ctx.strokeStyle = 'rgba(0, 238, 255, ' + Math.random().toFixed(2) + ')';
     ctx.lineWidth = 3;
     ctx.beginPath();
     ctx.arc(0, 0, 16, 0, 2*Math.PI, true);
     ctx.stroke();
-    ctx.strokeStyle = 'rgba(0, 238, 255, ' + Math.random() + ')';
+    ctx.strokeStyle = 'rgba(0, 238, 255, ' + Math.random().toFixed(2) + ')';
     ctx.lineWidth = 1;
     ctx.beginPath();
     ctx.arc(0, 0, 20, 0, 2*Math.PI, true);
@@ -111,8 +111,7 @@ export class GraphicComponent implements OnInit {
     ctx.fill();
 
     const color : string = this.getShiftedColor(Math.abs(shift));
-    // ctx.fillStyle = 'rgba(255,255,255,1)';
-    ctx.fillStyle = 'rgba(' + color + ', 1)';
+    ctx.fillStyle = 'rgba(' + color + ',1)';
     ctx.beginPath();
     ctx.moveTo(midX, 0);
     ctx.lineTo(midX + -28 + shift, 72);
@@ -125,7 +124,7 @@ export class GraphicComponent implements OnInit {
     const r = 255;
     const g = 160 + Math.random() * 95;
     const b = 116;
-    return r + ', ' + g + ', ' + b;
+    return r + ', ' + g.toFixed(0) + ', ' + b;
   }
 
   getShiftedColor = (shift : number) => {
@@ -134,6 +133,6 @@ export class GraphicComponent implements OnInit {
     const b = 255;
     const dg = shift * 17;
     const db = shift * 255;
-    return r + ', ' + (g - dg) + ', ' + (b - db);
+    return r + ', ' + (g - dg).toFixed(0) + ', ' + (b - db).toFixed(0);
   }
 }
