@@ -18,7 +18,7 @@ export class CanvasBackgroundComponent implements OnInit {
     for(let i = 0; i < this.numberOfBackgroundParticles; i++){
       this.itemArray.push({
         seed: Math.random(),
-        speed: this.getRandomSpeed(),
+        speed: this.speedOfBackgroundParticles,
         color: this.getRandomColor(), 
         itemGenerator: this.getRandomItem(),
         previousYLocation: 0
@@ -56,7 +56,7 @@ export class CanvasBackgroundComponent implements OnInit {
       
       if(yLocation < item.previousYLocation){
         item.itemGenerator = this.getRandomItem();
-        item.speed = this.getRandomSpeed();
+        item.speed = this.speedOfBackgroundParticles;
         item.color = this.getRandomColor();
       }
       item.itemGenerator(ctx, item, timeDelta);
@@ -77,15 +77,15 @@ export class CanvasBackgroundComponent implements OnInit {
   }
 
   generateSmallRect = (ctx, item, time) => {
-    const randomAlpha = Math.random()*1;
+    const randomAlpha = Math.random().toFixed(2);
     ctx.fillStyle = 'rgba(' + item.color +', ' + randomAlpha + ')';
     ctx.fillRect(-1.5, -1.5, 3, 3);
   }
 
   getRandomColor = () => {
     const r = 255;
-    const g = 96 + Math.random() * 150;
-    const b = 176 + Math.random() * 79;
+    const g = 96 + (Math.random() * 150).toFixed(0);
+    const b = 176 + (Math.random() * 79).toFixed(0);
     return r + ', ' + g + ', ' + b;
   }
 
@@ -99,8 +99,4 @@ export class CanvasBackgroundComponent implements OnInit {
     }
   }
 
-  getRandomSpeed = () => {
-    // return Math.random()*0.01 + 0.02;
-    return 0.03;
-  }
 }
